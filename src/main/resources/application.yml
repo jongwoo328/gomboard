@@ -3,3 +3,7 @@ spring:
     name: gom-board
   profiles:
     active: local
+
+logging:
+  level:
+    root: INFO

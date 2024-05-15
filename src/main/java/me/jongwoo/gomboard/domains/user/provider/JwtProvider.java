@@ -5,6 +5,9 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import me.jongwoo.gomboard.domains.user.util.RedisKeyUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -16,15 +19,27 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPublicKey;
 
-
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class JwtProvider {
+    private final RedisKeyUtil redisKeyUtil;
+
     @Bean
     public KeyPair keyPair() {
         try {
+            if (redisKeyUtil.keyExist()) {
+                log.info("Load exist key pair from redis.");
+                return redisKeyUtil.loadKeyPair();
+            }
+
+            log.info("Generate new key pair.");
             var keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(2048);
-            return keyPairGenerator.generateKeyPair();
+            var keyPair = keyPairGenerator.generateKeyPair();
+
+            redisKeyUtil.saveKeyPair(keyPair);
+            return keyPair;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -32,7 +47,7 @@ public class JwtProvider {
 
     @Bean
     public RSAKey rsaKey(KeyPair keyPair) {
-        return new RSAKey.Builder((RSAPublicKey)keyPair.getPublic())
+        return new RSAKey.Builder((RSAPublicKey) keyPair.getPublic())
                 .privateKey(keyPair.getPrivate())
                 .build();
     }

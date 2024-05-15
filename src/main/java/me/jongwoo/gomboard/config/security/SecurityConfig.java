@@ -33,6 +33,7 @@ public class SecurityConfig {
                         authorizeRequest
                                 .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/auth/login")).permitAll()
                                 .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/users")).permitAll()
+                                .requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/auth/refresh")).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .build();

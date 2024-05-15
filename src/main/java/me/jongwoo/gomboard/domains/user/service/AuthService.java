@@ -1,7 +1,9 @@
 package me.jongwoo.gomboard.domains.user.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.jongwoo.gomboard.domains.user.dto.UserDto;
+import me.jongwoo.gomboard.domains.user.packet.JwtRefreshRequest;
 import me.jongwoo.gomboard.domains.user.packet.JwtResponse;
 import me.jongwoo.gomboard.domains.user.packet.LoginRequest;
 import me.jongwoo.gomboard.domains.user.repository.UserRepository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.time.Instant;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class AuthService {
@@ -31,6 +34,13 @@ public class AuthService {
                 .token(createToken(user.toUserDto()))
                 .refreshToken(createRefreshToken(user.toUserDto()))
                 .build();
+    }
+
+    public void refresh(JwtRefreshRequest jwtRefreshRequest) {
+        log.debug("@TEST1:{}", jwtRefreshRequest.refreshToken());
+        var jwt = jwtDecoder.decode(jwtRefreshRequest.refreshToken());
+        var claim = jwt.getClaim("user");
+        log.debug("@TEST: {}", claim);
     }
 
     private String createToken(UserDto userDto) {
@@ -56,5 +66,6 @@ public class AuthService {
         JwtEncoderParameters parameters = JwtEncoderParameters.from(claims);
         return jwtEncoder.encode(parameters).getTokenValue();
     }
+
 }
 

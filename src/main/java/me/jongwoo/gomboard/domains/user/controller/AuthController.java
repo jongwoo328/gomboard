@@ -2,6 +2,7 @@ package me.jongwoo.gomboard.domains.user.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.jongwoo.gomboard.domains.user.packet.JwtRefreshRequest;
 import me.jongwoo.gomboard.domains.user.packet.JwtResponse;
 import me.jongwoo.gomboard.domains.user.packet.LoginRequest;
 import me.jongwoo.gomboard.domains.user.service.AuthService;
@@ -21,5 +22,10 @@ public class AuthController {
     @PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
+    }
+
+    @PostMapping("/refresh")
+    public void refreshToken(@RequestBody JwtRefreshRequest jwtRefreshRequest) {
+        authService.refresh(jwtRefreshRequest);
     }
 }
