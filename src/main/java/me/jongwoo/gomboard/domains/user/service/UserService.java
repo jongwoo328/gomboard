@@ -25,10 +25,10 @@ public class UserService {
                 .build();
 
         var savedUser = userRepository.save(user);
-        return savedUser.toDto();
+        return savedUser.toUserDto();
     }
 
     public List<UserDto> retrieveUsers() {
-        return userRepository.findAll().stream().map(User::toDto).toList();
+        return userRepository.findAll().stream().map(User::toUserDto).toList();
     }
 }

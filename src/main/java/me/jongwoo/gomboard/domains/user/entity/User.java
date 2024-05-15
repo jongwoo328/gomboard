@@ -26,8 +26,9 @@ public class User {
     private String email;
     @Column(name = "password", length = 100)
     private String password;
+    private String refreshToken;
 
-    public UserDto toDto() {
+    public UserDto toUserDto() {
         return new UserDto(id, email);
     }
 }
