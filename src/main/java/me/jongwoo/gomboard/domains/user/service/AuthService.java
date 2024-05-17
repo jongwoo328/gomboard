@@ -1,6 +1,5 @@
 package me.jongwoo.gomboard.domains.user.service;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.jongwoo.gomboard.domains.user.constant.JwtCustomClaimName;
 import me.jongwoo.gomboard.domains.user.constant.JwtCustomClaimValue;
