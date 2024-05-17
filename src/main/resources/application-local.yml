@@ -17,7 +17,7 @@ spring:
         database: 0
       user-jwt:
         host: localhost
-        port: 6380
+        port: 6379
         database: 1
 
 logging:
