@@ -13,7 +13,7 @@ import java.util.Base64;
 @Component
 @RequiredArgsConstructor
 public class RedisKeyUtil {
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Object> jwtKeyRedisTemplate;
 
     private static final String REDIS_PUBLIC_KEY = "redisPublicKey";
     private static final String REDIS_PRIVATE_KEY = "redisPrivateKey";
@@ -22,13 +22,13 @@ public class RedisKeyUtil {
         var publicKey = Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded());
         var privateKey = Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded());
 
-        redisTemplate.opsForValue().set(REDIS_PUBLIC_KEY, publicKey);
-        redisTemplate.opsForValue().set(REDIS_PRIVATE_KEY, privateKey);
+        jwtKeyRedisTemplate.opsForValue().set(REDIS_PUBLIC_KEY, publicKey);
+        jwtKeyRedisTemplate.opsForValue().set(REDIS_PRIVATE_KEY, privateKey);
     }
 
     public KeyPair loadKeyPair() throws NoSuchAlgorithmException, InvalidKeySpecException {
-        var publicKeyString = (String) redisTemplate.opsForValue().get(REDIS_PUBLIC_KEY);
-        var privateKeyString = (String) redisTemplate.opsForValue().get(REDIS_PRIVATE_KEY);
+        var publicKeyString = (String) jwtKeyRedisTemplate.opsForValue().get(REDIS_PUBLIC_KEY);
+        var privateKeyString = (String) jwtKeyRedisTemplate.opsForValue().get(REDIS_PRIVATE_KEY);
 
         if (publicKeyString == null || privateKeyString == null) {
             throw new IllegalArgumentException("Key not found.");
@@ -49,6 +49,6 @@ public class RedisKeyUtil {
     }
 
     public boolean keyExist() {
-        return Boolean.TRUE.equals(redisTemplate.hasKey(REDIS_PUBLIC_KEY)) && Boolean.TRUE.equals(redisTemplate.hasKey(REDIS_PRIVATE_KEY));
+        return Boolean.TRUE.equals(jwtKeyRedisTemplate.hasKey(REDIS_PUBLIC_KEY)) && Boolean.TRUE.equals(jwtKeyRedisTemplate.hasKey(REDIS_PRIVATE_KEY));
     }
 }
