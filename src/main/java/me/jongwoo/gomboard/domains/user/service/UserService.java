@@ -1,5 +1,6 @@
 package me.jongwoo.gomboard.domains.user.service;
 
+import com.fasterxml.uuid.Generators;
 import lombok.AllArgsConstructor;
 import me.jongwoo.gomboard.domains.user.dto.UserDto;
 import me.jongwoo.gomboard.domains.user.entity.User;
@@ -9,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class UserService {
 
     public UserDto registerUser(RegisterUserRequest registerUserDto) {
         var user = User.builder()
-                .id(UUID.randomUUID())
+                .id(Generators.timeBasedEpochRandomGenerator(new Random()).generate())
                 .email(registerUserDto.email())
                 .password(passwordEncoder.encode(registerUserDto.password()))
                 .build();
