@@ -7,7 +7,6 @@ import me.jongwoo.gomboard.domains.user.packet.JwtRefreshRequest;
 import me.jongwoo.gomboard.domains.user.packet.JwtResponse;
 import me.jongwoo.gomboard.domains.user.packet.LoginRequest;
 import me.jongwoo.gomboard.domains.user.service.AuthService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

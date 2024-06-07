@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.jongwoo.gomboard.domains.user.constant.JwtCustomClaimName;
 import me.jongwoo.gomboard.domains.user.constant.JwtCustomClaimValue;
 import me.jongwoo.gomboard.domains.user.constant.JwtType;
-import me.jongwoo.gomboard.domains.user.dto.UserDto;
+import me.jongwoo.gomboard.domains.user.model.UserDto;
 import me.jongwoo.gomboard.domains.user.packet.JwtRefreshRequest;
 import me.jongwoo.gomboard.domains.user.packet.JwtResponse;
 import me.jongwoo.gomboard.domains.user.packet.LoginRequest;

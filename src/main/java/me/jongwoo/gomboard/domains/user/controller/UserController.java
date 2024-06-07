@@ -3,7 +3,7 @@ package me.jongwoo.gomboard.domains.user.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.jongwoo.gomboard.common.response.ApiResponse;
-import me.jongwoo.gomboard.domains.user.dto.UserDto;
+import me.jongwoo.gomboard.domains.user.model.UserDto;
 import me.jongwoo.gomboard.domains.user.packet.RegisterUserRequest;
 import me.jongwoo.gomboard.domains.user.service.UserService;
 import org.springframework.http.ResponseEntity;

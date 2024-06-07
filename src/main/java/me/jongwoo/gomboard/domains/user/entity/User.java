@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.jongwoo.gomboard.common.entity.Auditable;
-import me.jongwoo.gomboard.domains.user.dto.UserDto;
+import me.jongwoo.gomboard.domains.user.model.UserDto;
 import me.jongwoo.gomboard.domains.user.provider.UUIDv7Provider;
 
 import java.util.Set;

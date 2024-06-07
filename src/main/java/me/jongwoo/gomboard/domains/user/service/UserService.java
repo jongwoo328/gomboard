@@ -2,8 +2,8 @@ package me.jongwoo.gomboard.domains.user.service;
 
 import com.fasterxml.uuid.Generators;
 import lombok.AllArgsConstructor;
-import me.jongwoo.gomboard.domains.user.dto.UserDto;
 import me.jongwoo.gomboard.domains.user.entity.User;
+import me.jongwoo.gomboard.domains.user.model.UserDto;
 import me.jongwoo.gomboard.domains.user.packet.RegisterUserRequest;
 import me.jongwoo.gomboard.domains.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;

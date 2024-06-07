@@ -1,9 +1,11 @@
 package me.jongwoo.gomboard.domains.board.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import me.jongwoo.gomboard.common.entity.Auditable;
 
 @Entity
+@Getter
 @Table(name = "topic")
 public class Topic extends Auditable {
     @Id

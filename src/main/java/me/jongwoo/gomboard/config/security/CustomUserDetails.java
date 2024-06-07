@@ -1,7 +1,7 @@
 package me.jongwoo.gomboard.config.security;
 
 import lombok.RequiredArgsConstructor;
-import me.jongwoo.gomboard.domains.user.dto.UserAuthDto;
+import me.jongwoo.gomboard.domains.user.model.UserAuthDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

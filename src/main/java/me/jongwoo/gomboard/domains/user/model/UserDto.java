@@ -1,4 +1,4 @@
-package me.jongwoo.gomboard.domains.user.dto;
+package me.jongwoo.gomboard.domains.user.model;
 
 import lombok.Builder;
 
