@@ -18,16 +18,6 @@ public class TopicController {
 
     @GetMapping()
     public ApiResponse<List<TopicResponse>> retrieveTopics() {
-        return ApiResponse.success(
-                topicService
-                        .retrieveTopics()
-                        .stream()
-                        .map(topicDto -> TopicResponse.builder()
-                                .id(topicDto.id())
-                                .name(topicDto.name())
-                                .build()
-                        ).toList()
-        );
-
+        return ApiResponse.success(topicService.retrieveTopics());
     }
 }
